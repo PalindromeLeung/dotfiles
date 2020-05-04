@@ -46,3 +46,8 @@
 ;;put all the emacs backup files in one directory
 (setq backup-directory-alist
       `(("." . ,(concat user-emacs-directory "backups"))))
+(put 'upcase-region 'disabled nil)
+
+(global-set-key (kbd "C-c l") 'org-store-link)
+(global-set-key (kbd "C-c a") 'org-agenda)
+(global-set-key (kbd "C-c c") 'org-capture)
