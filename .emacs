@@ -8,14 +8,12 @@
  ;; If there is more than one, they won't work right.
  '(coq-prog-name "/Users/isprime/.opam/4.07.0/bin/coqtop")
  '(package-archives
-   (quote
-    (("gnu" . "http://elpa.gnu.org/packages/")
-     ("melpa-stable" . "http://stable.melpa.org/packages/"))))
+   '(("gnu" . "http://elpa.gnu.org/packages/")
+     ("melpa-stable" . "http://stable.melpa.org/packages/")))
  '(package-selected-packages
-   (quote
-    (emmet-mode haskell-tab-indent cl-libify cl-lib-highlight unicode-fonts proof-general org-link-minor-mode multiple-cursors haskell-mode fstar-mode f dash-functional company-coq)))
+   '(evil emmet-mode haskell-tab-indent cl-libify cl-lib-highlight unicode-fonts proof-general org-link-minor-mode multiple-cursors haskell-mode fstar-mode f dash-functional company-coq))
  '(proof-three-window-enable t)
- '(proof-three-window-mode-policy (quote hybrid)))
+ '(proof-three-window-mode-policy 'hybrid))
 
 (require 'package)
 (let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
@@ -51,3 +49,6 @@
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c c") 'org-capture)
+
+(require 'evil)
+(evil-mode 1)
