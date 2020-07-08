@@ -29,6 +29,9 @@
 
 (package-initialize)
 
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(package-initialize)
 
 ;; set theme
 (load-theme 'misterioso)
@@ -52,3 +55,6 @@
 
 (require 'evil)
 (evil-mode 1)
+(require 'powerline)
+(powerline-default-theme)
+(put 'downcase-region 'disabled nil)
