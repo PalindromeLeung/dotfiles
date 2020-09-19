@@ -6,7 +6,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(coq-prog-name "/Users/isprime/.opam/4.07.0/bin/coqtop")
+ '(coq-prog-name "/Users/isprime/.opam/default/bin/coqtop")
  '(package-archives
    '(("gnu" . "http://elpa.gnu.org/packages/")
      ("melpa-stable" . "http://stable.melpa.org/packages/")))
@@ -23,16 +23,15 @@
                (cons "melpa" (concat proto "://melpa.org/packages/")) t))
 (package-initialize)
 
-(require 'package)
-
-(require 'package)
-
-(package-initialize)
-
-(require 'package)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-(package-initialize)
-
+(cond
+ ((>= 24 emacs-major-version)
+  (require 'package)
+  (package-initialize)
+  (add-to-list 'package-archives
+           '("melpa-stable" . "http://stable.melpa.org/packages/") t)
+  (package-refresh-contents)
+ )
+)
 ;; set theme
 (load-theme 'misterioso)
 (put 'set-goal-column 'disabled nil)
@@ -42,7 +41,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(package-initialize)
 
 ;;put all the emacs backup files in one directory
 (setq backup-directory-alist
@@ -58,3 +59,13 @@
 (require 'powerline)
 (powerline-default-theme)
 (put 'downcase-region 'disabled nil)
+
+(cond
+ ((>= 24 emacs-major-version)
+  (require 'package)
+  (package-initialize)
+  (add-to-list 'package-archives
+           '("melpa-stable" . "http://stable.melpa.org/packages/") t)
+  (package-refresh-contents)
+ )
+)
