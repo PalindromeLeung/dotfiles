@@ -10,6 +10,9 @@
 (menu-bar-mode 0)
 (scroll-bar-mode -1)
 
+;; no backup files
+(setq make-backup-files nil)
+
 ;; set theme
 (load-theme 'tango-dark)
 (put 'set-goal-column 'disabled nil)
@@ -36,16 +39,35 @@
 (setq calendar-location-name "West Lafayette, IN")
 (require 'solar)
 (setq mytheme 'init)
-(defun my-theme-switcher ()
-  (let ((current-hour (+ (string-to-number (format-time-string "%H"))
-                         (/ (string-to-number (format-time-string "%M")) 60.0)))
-        (sunrise-hour (car (car (solar-sunrise-sunset (calendar-current-date)))))
-        (sunset-hour  (car (car (cdr (solar-sunrise-sunset (calendar-current-date)))))))
-    (if (or (< current-hour sunrise-hour) (> current-hour sunset-hour))
-        (when (not (eq mytheme 'dark))  (load-theme 'spacemacs-dark t) (setq mytheme 'dark))
-        (when (not (eq mytheme 'light)) (load-theme 'spacemacs-light t) (setq mytheme 'light))
-      )))
+;; (defun my-theme-switcher ()
+;;   (let ((current-hour (+ (string-to-number (format-time-string "%H"))
+;;                          (/ (string-to-number (format-time-string "%M")) 60.0)))
+;;         (sunrise-hour (car (car (solar-sunrise-sunset (calendar-current-date)))))
+;;         (sunset-hour  (car (car (cdr (solar-sunrise-sunset (calendar-current-date)))))))
+;;     (if (or (< current-hour sunrise-hour) (> current-hour sunset-hour))
+;;         (when (not (eq mytheme 'dark))  (load-theme 'spacemacs-dark t) (setq mytheme 'dark))
+;;         (when (not (eq mytheme 'light)) (load-theme 'spacemacs-light t) (setq mytheme 'light))
+;;       )))
 (my-theme-switcher)
 ;; Run at every 1800 seconds, after 0s delay
 (run-with-timer 0 1800 'my-theme-switcher)
 ;; End of Oliver's setup for pretty format and font
+
+(setq visible-bell t)
+
+;; remap the meta key in MacOS
+(setq ns-alternate-modifier 'meta)
+(setq ns-right-alternate-modifier 'none)
+(setq ns-command-modifier 'super)
+(setq ns-right-command-modifier 'left)
+(setq ns-control-modifier 'control)
+(setq ns-right-control-modifier 'left)
+(setq ns-function-modifier 'none)
+
+
+;; add path of the gnu-global
+(add-to-list 'tramp-remote-path "/usr/local/bin/global")
+
+;; add path of the gtags 
+(setq load-path (cons "/usr/local/bin/gtags" load-path))
+(autoload 'gtags-mode "gtags" "" t)
